@@ -2,19 +2,20 @@ package com.dev.karol.petclinic.core.domain;
 
 import java.util.Date;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Consult {
 
-    Integer id;
+    UUID id;
     Pet pet;
     Veterinary veterinary;
     Date date;
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
