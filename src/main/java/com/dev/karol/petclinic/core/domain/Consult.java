@@ -4,9 +4,19 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Consult {
+
+    Integer id;
     Pet pet;
     Veterinary veterinary;
     Date date;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Pet getPet() {
         return pet;
@@ -37,18 +47,19 @@ public class Consult {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Consult consult = (Consult) o;
-        return getPet().equals(consult.getPet()) && getVeterinary().equals(consult.getVeterinary()) && getDate().equals(consult.getDate());
+        return getId().equals(consult.getId()) && getPet().equals(consult.getPet()) && getVeterinary().equals(consult.getVeterinary()) && getDate().equals(consult.getDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPet(), getVeterinary(), getDate());
+        return Objects.hash(getId(), getPet(), getVeterinary(), getDate());
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Consult{");
-        sb.append("pet=").append(pet);
+        sb.append("id=").append(id);
+        sb.append(", pet=").append(pet);
         sb.append(", veterinary=").append(veterinary);
         sb.append(", date=").append(date);
         sb.append('}');
