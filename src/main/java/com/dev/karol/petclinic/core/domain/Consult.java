@@ -11,6 +11,13 @@ public class Consult {
     Veterinary veterinary;
     Date date;
 
+    public Consult(UUID id, Pet pet, Veterinary veterinary, Date date) {
+        this.id = id;
+        this.pet = pet;
+        this.veterinary = veterinary;
+        this.date = date;
+    }
+
     public UUID getId() {
         return id;
     }
