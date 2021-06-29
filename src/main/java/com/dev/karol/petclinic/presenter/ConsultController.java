@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/consults")
@@ -45,7 +46,8 @@ public class ConsultController implements IConsultManager {
     }
 
     @Override
-    public void cancelConsult(Consult consult) {
-
+    @DeleteMapping("/{id}")
+    public void cancelConsult(@PathVariable UUID id) {
+        this.consultService.cancelConsult(id);
     }
 }

@@ -4,10 +4,7 @@ import com.dev.karol.petclinic.core.domain.Consult;
 import com.dev.karol.petclinic.core.ports.output.IConsultRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,8 +23,8 @@ public class ConsultRepository implements IConsultRepository {
     }
 
     @Override
-    public Consult findById(UUID id) {
-        return consults.get(id);
+    public Optional<Consult> findById(UUID id) {
+        return Optional.ofNullable(consults.get(id));
     }
 
     @Override
@@ -40,5 +37,10 @@ public class ConsultRepository implements IConsultRepository {
     @Override
     public List<Consult> findAll() {
         return new ArrayList<>(consults.values());
+    }
+
+    @Override
+    public void deleteById(UUID id) {
+        consults.remove(id);
     }
 }
