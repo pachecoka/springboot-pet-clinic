@@ -1,7 +1,6 @@
 package com.dev.karol.petclinic.presenter;
 
 import com.dev.karol.petclinic.core.domain.Consult;
-import com.dev.karol.petclinic.core.domain.Pet;
 import com.dev.karol.petclinic.core.ports.input.IConsultManager;
 import com.dev.karol.petclinic.core.service.ConsultService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/consults")
-public class ConsultController implements  IConsultManager {
+public class ConsultController implements IConsultManager {
 
     ConsultService consultService;
 
@@ -28,8 +27,9 @@ public class ConsultController implements  IConsultManager {
     }
 
     @Override
-    public List<Consult> getConsults(Pet pet) {
-        return null;
+    @GetMapping(path = "/pet/{petName}")
+    public List<Consult> getConsults(@PathVariable String petName) {
+        return consultService.getConsults(petName);
     }
 
     @Override

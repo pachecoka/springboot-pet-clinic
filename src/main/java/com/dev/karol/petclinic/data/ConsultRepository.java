@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ConsultRepository implements IConsultRepository {
@@ -15,7 +16,7 @@ public class ConsultRepository implements IConsultRepository {
     HashMap<UUID, Consult> consults = new HashMap<>();
 
     @Override
-    public void addConsult(Consult consult) {
+    public void save(Consult consult) {
         consults.put(consult.getId(), consult);
     }
 
@@ -25,12 +26,19 @@ public class ConsultRepository implements IConsultRepository {
     }
 
     @Override
-    public Consult getConsult(UUID id) {
+    public Consult findById(UUID id) {
         return consults.get(id);
     }
 
     @Override
-    public List<Consult> getConsults() {
+    public List<Consult> findByPetName(String name) {
+        return consults.values().stream().filter(
+                consult -> consult.getPet().getName().equals(name))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Consult> findAll() {
         return new ArrayList<>(consults.values());
     }
 }
